@@ -28,6 +28,12 @@
     vagrant $ cd /var/www/application/app
     vagrant $ composer install
 
+    vagrant $ mysql -uroot -ppassword
+    mysql> GRANT ALL PRIVILEGES ON *.* TO 'webapp'@'%' identified by 'passw0rd' WITH GRANT OPTION;
+    mysql> FLUSH PRIVILEGES;
+    mysql> CREATE DATABASE blog default character set utf8;
+    mysql> CREATE DATABASE test_blog default character set utf8;
+
 
 ## Vagrant URL
 
