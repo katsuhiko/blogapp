@@ -1,5 +1,10 @@
 .DS_Store
 
+# Vagrant and Chef
+.vagrant
+cookbooks
+
+# CakePHP
 app/tmp
 app/Plugin
 app/Vendor
