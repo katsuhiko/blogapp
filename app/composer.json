@@ -1,0 +1,16 @@
+{
+    "name": "php_ci_book/blogapp",
+    "authors": [
+        {
+            "name": "Katsuhiko Nagashima",
+            "email": "katsuhiko.nagashima@gmail.com"
+        }
+    ],
+    "config": {
+        "vendor-dir": "Vendor"
+    },
+    "require": {
+        "cakephp/cakephp": "2.6.*",
+        "josegonzalez/cakephp-environments": "1.0.0"
+    }
+}
