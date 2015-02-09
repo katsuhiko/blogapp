@@ -1,5 +1,8 @@
 .DS_Store
 
+# IDE
+.idea
+
 # Vagrant and Chef
 .vagrant
 cookbooks
