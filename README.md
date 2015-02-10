@@ -47,6 +47,21 @@
 
 ## Console
 
+    // Vagrant
+    // Vagrant 起動
+    host $ vagrant up
+    // Vagrant 停止
+    host $ vagrant halt
+    // Vagrant プロビジョン(仮想環境更新)
+    host $ vagrant provision
+    // Vagrant 仮想環境破棄
+    host $ vagrant destroy
+
+    // Chef
+    // Chef cookbooks更新
+    host $ rm -rf cookbooks
+    host $ berks vendor ./cookbooks
+
     // Composer
     vagrant $ cd /var/www/application/current/app
     // Composer で導入
