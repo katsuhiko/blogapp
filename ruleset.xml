@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="CustomCakePHP">
+    <rule ref="CakePHP">
+        <!-- Docコメントをインデントなしとするルールは、独自すぎるので除外する。 -->
+        <exclude name="CakePHP.WhiteSpace.ScopeIndent.DocCommentStartColumn"/>
+    </rule>
+</ruleset>

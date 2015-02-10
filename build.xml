@@ -62,7 +62,7 @@
             <arg line="--ignore=Test,Vendor,Plugin,Config,cake.php,index.php"/>
             <arg line="--report=checkstyle"/>
             <arg line="--report-checkstyle=${appdir}/reports/checkstyle.xml"/>
-            <arg line="--standard=CakePHP"/>
+            <arg line="--standard=ruleset.xml"/>
             <arg line="--extensions=php"/>
             <arg line="${appdir}"/>
         </exec>
