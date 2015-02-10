@@ -59,10 +59,11 @@
         </exec>
         <exec dir="${basedir}" executable="${vendorbindir}/phpcs"
               output="${logdir}/phpcs.log">
-            <arg line="--ignore=Test,Vendor,Plugin"/>
+            <arg line="--ignore=Test,Vendor,Plugin,Config,Console/cake.php"/>
             <arg line="--report=checkstyle"/>
             <arg line="--report-checkstyle=${appdir}/reports/checkstyle.xml"/>
             <arg line="--standard=CakePHP"/>
+            <arg line="--sniffs=DocCommentStartColumn"/>
             <arg line="--extensions=php"/>
             <arg line="${appdir}"/>
         </exec>
@@ -75,7 +76,7 @@
             <arg line="${appdir}"/>
             <arg line="xml"/>
             <arg line="codesize,unusedcode,design,naming"/>
-            <arg line="--exclude ${appdir}/Test,${appdir}/Vendor,${appdir}/Plugin"/>
+            <arg line="--exclude ${appdir}/Test,${appdir}/Vendor,${appdir}/Plugin,${appdir}/Config/Migration,${appdir}/Config/Schema"/>
             <arg line="--reportfile ${appdir}/reports/phpmd.xml"/>
         </exec>
     </target>
@@ -84,6 +85,7 @@
     <target name="phpcpd" description="Find duplicate code using PHPCPD">
         <exec dir="${appdir}" executable="${vendorbindir}/phpcpd"
               output="${logdir}/phpcpd.log">
+            <arg line="--exclude Config"/>
             <arg line="--exclude Vendor"/>
             <arg line="--exclude Plugin"/>
             <arg line="--exclude webroot"/>
