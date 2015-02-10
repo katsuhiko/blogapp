@@ -59,7 +59,7 @@
         </exec>
         <exec dir="${basedir}" executable="${vendorbindir}/phpcs"
               output="${logdir}/phpcs.log">
-            <arg line="--ignore=Test,Vendor,Plugin,Config,cake.php"/>
+            <arg line="--ignore=Test,Vendor,Plugin,Config,cake.php,index.php"/>
             <arg line="--report=checkstyle"/>
             <arg line="--report-checkstyle=${appdir}/reports/checkstyle.xml"/>
             <arg line="--standard=CakePHP"/>
