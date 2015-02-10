@@ -57,7 +57,7 @@ class DATABASE_CONFIG {
 	public $test;
 
 	public function __construct() {
-		$this->default = array(
+		$this->default = [
 			'datasource' => 'Database/Mysql',
 			'persistent' => false,
 			'host' => $this->read('MYSQL_DB_HOST'),
@@ -66,9 +66,9 @@ class DATABASE_CONFIG {
 			'database' => $this->read('MYSQL_DB_NAME'),
 			'prefix' => $this->read('MYSQL_PREFIX'),
 			'encoding' => 'utf8',
-		);
+		];
 
-		$this->test = array(
+		$this->test = [
 			'datasource' => 'Database/Mysql',
 			'persistent' => false,
 			'host' => $this->read('MYSQL_DB_HOST'),
@@ -77,7 +77,7 @@ class DATABASE_CONFIG {
 			'database' => $this->read('MYSQL_TEST_DB_NAME'),
 			'prefix' => $this->read('MYSQL_PREFIX'),
 			'encoding' => 'utf8',
-		);
+		];
 	}
 
 	public function read($key, $default = null) {
