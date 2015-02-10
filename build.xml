@@ -71,18 +71,16 @@
         </exec>
     </target>
 
-    <!-- PDepend -->
+    <!-- PHP Depend -->
     <target name="pdepend" description="Calculate software metrics using PHP_Depend">
-        <!-- 終わらないのでコメント化
         <exec dir="${basedir}" executable="${vendorbindir}/pdepend"
               output="${logdir}/pdepend.log">
-            <arg line="- -jdepend-xml=${appdir}/reports/jdepend.xml"/>
-            <arg line="- -jdepend-chart=${appdir}/reports/dependencies.svg"/>
-            <arg line="- -overview-pyramid=${appdir}/reports/overview-pyramid.svg"/>
-            <arg line="- -exclude=${appdir}/Test,${appdir}/Vendor,${appdir}/Plugin,${appdir}/Config"/>
+            <arg line="--jdepend-xml=${appdir}/reports/jdepend.xml"/>
+            <arg line="--jdepend-chart=${appdir}/reports/dependencies.svg"/>
+            <arg line="--overview-pyramid=${appdir}/reports/overview-pyramid.svg"/>
+            <arg line="--exclude=${appdir}/Test,${appdir}/Vendor,${appdir}/Plugin,${appdir}/Config"/>
             <arg line="${appdir}"/>
         </exec>
-        -->
     </target>
 
     <!-- PHPCodeSniffer -->

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d3e7fa9d8bbf2bcff06e97cc7096ae96",
+    "hash": "5e3b9ed48412807a7069adf5406642d7",
     "packages": [
         {
             "name": "cakedc/migrations",
