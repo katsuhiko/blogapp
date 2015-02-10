@@ -53,8 +53,11 @@
     <target name="phploc" description="Measure project size using PHPLOC">
         <exec dir="${basedir}" executable="${vendorbindir}/phploc"
               output="${logdir}/phploc.log">
+            <arg line="--count-tests"/>
             <arg line="--log-csv"/>
             <arg line="${appdir}/reports/phploc.csv"/>
+            <arg line="--exclude"/>
+            <arg line="Test"/>
             <arg line="--exclude"/>
             <arg line="Vendor"/>
             <arg line="--exclude"/>
@@ -64,6 +67,7 @@
             <arg line="--exclude"/>
             <arg line="Plugin"/>
             <arg line="${appdir}"/>
+            <arg line="${appdir}/Test"/>
         </exec>
     </target>
 
