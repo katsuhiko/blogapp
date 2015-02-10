@@ -47,8 +47,8 @@
 
 ## Console
 
-    cd /var/www/application/current/app
-
+    // Composer
+    vagrant $ cd /var/www/application/current/app
     // Composer で導入
     vagrant $ composer require "cakedc/migration:~2.3"
     // Composer で導入(開発用)
@@ -58,6 +58,9 @@
     // Composer ライブラリバージョンの更新 / インストール(lock ファイルを更新する)
     vagrant $ composer update
 
+
+    // Migration
+    vagrant $ cd /var/www/application/current/app
     // Migration マイグレーションファイルの作成
     vagrant $ Console/cake migrations.migration generate create_posts id:primary_key title:string body:text created modified
     // Migration 実行するSQLの確認(dry run モード)
@@ -65,18 +68,25 @@
     // Migration マイグレーションの実施
     vagrant $ Console/cake migrations.migration run all
 
-    // PHPUnit 全テストの実行
+
+    // UnitTest
+    vagrant $ cd /var/www/application/current/app
+    // UnitTest 全テストの実行
     vagrant $ Console/cake test app AllTests
-    // PHPUnit テストファイルを指定して実行
+    // UnitTest テストファイルを指定して実行
     vagrant $ Console/cake test app Config/Routes
 
+
+    // Bake
+    vagrant $ cd /var/www/application/current/app
     // Bake モデルの雛形を作成
     vagrant $ Console/cake bake model Post
     // Bake コントローラーの雛形を作成
     vagrant $ Console/cake bake controller Post
     // Bake フィクスチャの雛形を作成
     vagrant $ Console/cake bake fixture -s -n 1
-    
+
+
     // BDD
     vagrant $ cd /var/www/application/current
     // BDD 利用可能なステップの確認
@@ -85,6 +95,12 @@
     vagrant $ app/Console/cake Bdd.story
     // BDD フィーチャーファイルを指定して実行
     vagrant $ app/Console/cake Bdd.story features/blog_posts.feature
+    
+
+    // Phing
+    vagrant $ cd /var/www/application/current
+    // Phing ビルドの実行
+    vagrant $ app/Vendor/bin/phing
 
 
 ## Troubleshooting
