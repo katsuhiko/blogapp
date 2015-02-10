@@ -58,7 +58,6 @@
     // Composer ライブラリバージョンの更新 / インストール(lock ファイルを更新する)
     vagrant $ composer update
 
-
     // Migration
     vagrant $ cd /var/www/application/current/app
     // Migration マイグレーションファイルの作成
@@ -68,14 +67,12 @@
     // Migration マイグレーションの実施
     vagrant $ Console/cake migrations.migration run all
 
-
     // UnitTest
     vagrant $ cd /var/www/application/current/app
     // UnitTest 全テストの実行
     vagrant $ Console/cake test app AllTests
     // UnitTest テストファイルを指定して実行
     vagrant $ Console/cake test app Config/Routes
-
 
     // Bake
     vagrant $ cd /var/www/application/current/app
@@ -86,7 +83,6 @@
     // Bake フィクスチャの雛形を作成
     vagrant $ Console/cake bake fixture -s -n 1
 
-
     // BDD
     vagrant $ cd /var/www/application/current
     // BDD 利用可能なステップの確認
@@ -95,7 +91,6 @@
     vagrant $ app/Console/cake Bdd.story
     // BDD フィーチャーファイルを指定して実行
     vagrant $ app/Console/cake Bdd.story features/blog_posts.feature
-    
 
     // Phing
     vagrant $ cd /var/www/application/current
