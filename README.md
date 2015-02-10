@@ -72,3 +72,18 @@
     vagrant $ Console/cake bake controller Post
     // Bake フィクスチャの雛形を作成
     vagrant $ Console/cake bake fixture -s -n 1
+
+
+## Troubleshooting
+
+### vagrant provision でエラー
+
+    Shared folders that Chef requires are missing on the virtual machine.
+    This is usually due to configuration changing after already booting the
+    machine. The fix is to run a `vagrant reload` so that the proper shared
+    folders will be prepared and mounted on the VM.
+
+以下を実施すると回避できる。
+
+    host $ rm .vagrant/machines/default/virtualbox/synced_folders
+    host $ vagrant reload --provision
