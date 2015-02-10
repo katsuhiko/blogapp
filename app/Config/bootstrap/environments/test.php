@@ -9,4 +9,5 @@ Environment::configure('test', true, [
 	'MYSQL_PREFIX' => '',
 ], function() {
 	CakePlugin::load('Bdd');
+	CakePlugin::load('Fabricate');
 });
