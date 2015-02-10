@@ -6,7 +6,7 @@
 	</div>
 </nav>
 <?php foreach ($posts as $post): ?>
-	<selection>
+	<section>
 		<h1><?php echo h($post['Post']['title']); ?></h1>
 		<?php echo h($post['Post']['body']); ?>
 		<p class="actions">
@@ -17,7 +17,7 @@
 				'action' => 'delete', $post['Post']['id']
 			], null, __('記事「%s」を削除してもよろしいですか？', $post['Post']['title'])); ?>
 		</p>
-	</selection>
+	</section>
 <?php endforeach; ?>
 <ul class="pagination">
 	<?php

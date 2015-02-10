@@ -53,18 +53,22 @@
     vagrant $ composer require "cakedc/migration:~2.3"
     // Composer で導入(開発用)
     vagrant $ composer require --dev "sizuhiko/fabricate:1.*"
+    // Composer ライブラリインストール(lock ファイルのバージョンに従う)
+    vagrant $ composer install
+    // Composer ライブラリバージョンの更新 / インストール(lock ファイルを更新する)
+    vagrant $ composer update
 
-    // マイグレーションファイルの作成
+    // Migration マイグレーションファイルの作成
     vagrant $ Console/cake migrations.migration generate create_posts id:primary_key title:string body:text created modified
-    // 実行するSQLの確認(dry run モード)
+    // Migration 実行するSQLの確認(dry run モード)
     vagrant $ Console/cake migrations.migration run all -d
-    // マイグレーションの実施
+    // Migration マイグレーションの実施
     vagrant $ Console/cake migrations.migration run all
 
-    // テストの実行(個別)
-    vagrant $ Console/cake test app Config/Routes
-    // テストの実行(すべて)
+    // PHPUnit 全テストの実行
     vagrant $ Console/cake test app AllTests
+    // PHPUnit テストファイルを指定して実行
+    vagrant $ Console/cake test app Config/Routes
 
     // Bake モデルの雛形を作成
     vagrant $ Console/cake bake model Post
@@ -72,6 +76,15 @@
     vagrant $ Console/cake bake controller Post
     // Bake フィクスチャの雛形を作成
     vagrant $ Console/cake bake fixture -s -n 1
+    
+    // BDD
+    vagrant $ cd /var/www/application/current
+    // BDD 利用可能なステップの確認
+    vagrant $ app/Console/cake Bbb.story -dl --lang=ja
+    // BDD 全フィーチャーの実行
+    vagrant $ app/Console/cake Bdd.story
+    // BDD フィーチャーファイルを指定して実行
+    vagrant $ app/Console/cake Bdd.story features/blog_posts.feature
 
 
 ## Troubleshooting
