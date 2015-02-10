@@ -59,11 +59,11 @@
         </exec>
         <exec dir="${basedir}" executable="${vendorbindir}/phpcs"
               output="${logdir}/phpcs.log">
-            <arg line="--ignore=Test,Vendor,Plugin,Config,Console/cake.php"/>
+            <arg line="--ignore=Test,Vendor,Plugin,Config"/>
             <arg line="--report=checkstyle"/>
             <arg line="--report-checkstyle=${appdir}/reports/checkstyle.xml"/>
             <arg line="--standard=CakePHP"/>
-            <arg line="--sniffs=DocCommentStartColumn"/>
+            <arg line="--sniffs=CakePHP.ScopeIndent.DocCommentStartColumn"/>
             <arg line="--extensions=php"/>
             <arg line="${appdir}"/>
         </exec>
