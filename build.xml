@@ -11,7 +11,7 @@
     <property name="vendorbindir" value="${appdir}/Vendor/bin"/>
 
     <!-- Build -->
-    <target name="build" depends="prepare,caketest,behat,phpcs,phpmd,phpcpd,phpdoc"/>
+    <target name="build" depends="prepare,caketest,behat,phploc,pdepend,phpcs,phpmd,phpcpd,phpdoc"/>
 
     <!-- Prepare -->
     <target name="prepare" description="Prepare for build">
@@ -49,6 +49,38 @@
         -->
     </target>
 
+    <!-- PHPLOC -->
+    <target name="phploc" description="Measure project size using PHPLOC">
+        <exec dir="${basedir}" executable="${vendorbindir}/phploc"
+              output="${logdir}/phploc.log">
+            <arg line="--log-csv"/>
+            <arg line="${appdir}/reports/phploc.csv"/>
+            <arg line="--exclude"/>
+            <arg line="Test"/>
+            <arg line="--exclude"/>
+            <arg line="Vendor"/>
+            <arg line="--exclude"/>
+            <arg line="Plugin"/>
+            <arg line="--exclude"/>
+            <arg line="Config"/>
+            <arg line="--exclude"/>
+            <arg line="Plugin"/>
+            <arg line="${appdir}"/>
+        </exec>
+    </target>
+
+    <!-- PDepend -->
+    <target name="pdepend" description="Calculate software metrics using PHP_Depend">
+        <exec dir="${basedir}" executable="${vendorbindir}/pdepend"
+              output="${logdir}/pdepend.log">
+            <arg line="--jdepend-xml=${appdir}/reports/jdepend.xml"/>
+            <arg line="--jdepend-chart=${appdir}/reports/dependencies.svg"/>
+            <arg line="--overview-pyramid=${appdir}/reports/overview-pyramid.svg"/>
+            <arg line="--exclude=${appdir}/Test,${appdir}/Vendor,${appdir}/Plugin,${appdir}/Config"/>
+            <arg line="${appdir}"/>
+        </exec>
+    </target>
+
     <!-- PHPCodeSniffer -->
     <target name="phpcs" description="Find coding standard violations using PHP_CodeSniffer">
         <exec dir="${basedir}" executable="${vendorbindir}/phpcs"
@@ -75,7 +107,7 @@
             <arg line="${appdir}"/>
             <arg line="xml"/>
             <arg line="codesize,unusedcode,design,naming"/>
-            <arg line="--exclude ${appdir}/Test,${appdir}/Vendor,${appdir}/Plugin,${appdir}/Config/Migration,${appdir}/Config/Schema"/>
+            <arg line="--exclude ${appdir}/Test,${appdir}/Vendor,${appdir}/Plugin,${appdir}/Config"/>
             <arg line="--reportfile ${appdir}/reports/phpmd.xml"/>
         </exec>
     </target>
