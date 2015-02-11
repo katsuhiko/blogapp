@@ -188,3 +188,12 @@ Jnkins サイトにて、プロジェクト「blogapp」を選択して、左メ
     fastcgi_param MYSQL_DB_HOST xxx
     
     ec2 $ sudo service nginx restart
+
+### 暫定の HTTPS 化
+
+Jenkins の設定ファイルに HTTPS のポートでも起動するように変更して、
+AWS の SecurityGroup で HTTP で利用している 8080 ポートを閉じた。
+8080 ポートはコマンド等で利用するかっと思って、設定ファイルから取り除くのはやめた。
+
+    ec2 $ sudo vi /etc/default/jenkins
+    ec2 $ sudo service jenkins restart
