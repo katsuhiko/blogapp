@@ -111,8 +111,6 @@ Vagrant.configure(2) do |config|
       recipe[phpenv::composer]
       recipe[phpenv::develop]
       recipe[capistrano]
-      recipe[jenkins::default]
-      recipe[jenkins::plugin]
     ]
   end
 
