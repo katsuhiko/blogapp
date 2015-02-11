@@ -48,6 +48,7 @@
 ## Console
 
     // Vagrant
+    host $ cd blogapp
     // Vagrant 起動
     host $ vagrant up
     // Vagrant 停止
@@ -58,6 +59,7 @@
     host $ vagrant destroy
 
     // Chef
+    host $ cd blogapp
     // Chef cookbooks更新
     host $ rm -rf cookbooks
     host $ berks vendor ./cookbooks
@@ -126,3 +128,20 @@
 
     host $ rm .vagrant/machines/default/virtualbox/synced_folders
     host $ vagrant reload --provision
+
+## Create CI Server on EC2
+
+Amazon Linux で動かしたかったけど、写経した Recipe が Ubuntu に特化しすぎてて、対応するのが大変。
+
+EC2 に Ubuntu(Ubuntu Server 14.04 LTS (HVM), SSD Volume Type - ami-20b6aa21) を利用することに変更。
+
+Amazon Linux で動作するようにしたいので、ディレクトリ構成や初期設定ファイル状態がかなり違う
+Nginx / php-fpm の設定を見直す必要がある。
+
+* 参考
+  * [Amazon Linuxにknife-soloの実行環境を構築してみる](http://dev.classmethod.jp/cloud/amazon-linux_knife-solo/)
+  * [About the Recipe DSL - OSによる切替についての記載がある](https://docs.chef.io/dsl_recipe.html)
+
+    host $ cd blogapp
+    host $ knife solo prepare xxx@255.255.255.255 -i ~/.ssh/xxx.pem 
+    host $ knife solo cook --node-name ci xxx@255.255.255.255 -i ~/.ssh/xxx.pem
