@@ -186,6 +186,6 @@ Jnkins サイトにて、プロジェクト「blogapp」を選択して、左メ
     ec2 $ sudo vi /etc/nginx/sites-available/test
     
     20行目付近の CAKE_ENV の下にDB接続先の環境変数をセットする。
-    astcgi_param MYSQL_DB_HOST xxx
+    fastcgi_param MYSQL_DB_HOST xxx
     
     ec2 $ sudo service nginx restart
