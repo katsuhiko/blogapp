@@ -154,7 +154,7 @@ Nginx / php-fpm の設定を見直す必要がある。
 ### knife solo による CIサーバー環境設定
 
     // CIサーバーに接続できることを確認する。
-    host $ ssh -i ~/.ssh/study.pem ubuntu@54.65.148.128
+    host $ ssh -i ~/.ssh/xxx.pem xxx@255.255.255.255
 
     host $ cd blogapp
     host $ rm -rf cookbooks
@@ -171,21 +171,21 @@ Nginx / php-fpm の設定を見直す必要がある。
 ### Jenkins の設定
 
     host $ cd blogapp
-    host $ scp -i ~/.ssh/study.pem ./jenkins-config.xml ubuntu@54.65.148.128:~/
+    host $ scp -i ~/.ssh/xxx.pem ./jenkins-config.xml xxx@255.255.255.255:~/
 
-    host $ ssh -i ~/.ssh/study.pem ubuntu@54.65.148.128
+    host $ ssh -i ~/.ssh/xxx.pem xxx@255.255.255.255
     ec2 $ sudo /usr/bin/java -jar /var/lib/jenkins/jenkins-cli.jar -s http://localhost:8080 create-job blogapp < ./jenkins-config.xml
 
 Jnkins サイトにて、プロジェクト「blogapp」を選択して、左メニュー「設定」、
 シェルの実行欄の１行目にDB接続の環境変数を設定する。
 
-    export MYSQL_DB_HOST=ci-rds.cm6rgwyxhp9c.ap-northeast-1.rds.amazonaws.com
+    export MYSQL_DB_HOST=xxx
 
 ### Nginx 接続先DBの環境変数設定
 
     ec2 $ sudo vi /etc/nginx/sites-available/test
     
     20行目付近の CAKE_ENV の下にDB接続先の環境変数をセットする。
-    astcgi_param MYSQL_DB_HOST xxxx
+    astcgi_param MYSQL_DB_HOST xxx
     
     ec2 $ sudo service nginx restart
