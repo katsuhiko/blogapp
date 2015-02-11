@@ -34,7 +34,8 @@
     vagrant $ cd /var/www/application/current/app
     vagrant $ composer install
     vagrant $ Console/cake migrations.migration run all
-    vagrant $ Console/cate test app AllTests
+    vagrant $ Console/cake test app AllTests
+    vagrant $ Console/cake Bdd.story
 
 
 ## Vagrant URL
