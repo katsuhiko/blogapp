@@ -129,19 +129,63 @@
     host $ rm .vagrant/machines/default/virtualbox/synced_folders
     host $ vagrant reload --provision
 
+
 ## Create CI Server on EC2
 
 Amazon Linux で動かしたかったけど、写経した Recipe が Ubuntu に特化しすぎてて、対応するのが大変。
 
 EC2 に Ubuntu(Ubuntu Server 14.04 LTS (HVM), SSD Volume Type - ami-20b6aa21) を利用することに変更。
 
-Amazon Linux で動作するようにしたいので、ディレクトリ構成や初期設定ファイル状態がかなり違う
+Amazon Linux で動作するようにしたい。
+ディレクトリ構成や初期設定ファイル状態がかなり違うので、
 Nginx / php-fpm の設定を見直す必要がある。
 
-* 参考
-  * [Amazon Linuxにknife-soloの実行環境を構築してみる](http://dev.classmethod.jp/cloud/amazon-linux_knife-solo/)
-  * [About the Recipe DSL - OSによる切替についての記載がある](https://docs.chef.io/dsl_recipe.html)
+### 参考にしたサイト
+
+* [Amazon Linuxにknife-soloの実行環境を構築してみる](http://dev.classmethod.jp/cloud/amazon-linux_knife-solo/)
+* [About the Recipe DSL - OSによる切替についての記載がある](https://docs.chef.io/dsl_recipe.html)
+* [Export/import jobs in Jenkins](http://stackoverflow.com/questions/8424228/export-import-jobs-in-jenkins)
+
+### EC2 CIサーバーインスタンス作成メモ
+
+* AMI Ubuntu Server 14.04 LTS (HVM), SSD Volume Type - ami-20b6aa21
+* ScrityGroup SSH:22、Jenkins用:8080 ポートへの inbounds rule を追加
+
+### knife solo による CIサーバー環境設定
+
+    // CIサーバーに接続できることを確認する。
+    host $ ssh -i ~/.ssh/study.pem ubuntu@54.65.148.128
 
     host $ cd blogapp
+    host $ rm -rf cookbooks
+    host $ berks vendor ./cookbooks
     host $ knife solo prepare xxx@255.255.255.255 -i ~/.ssh/xxx.pem 
-    host $ knife solo cook --node-name ci xxx@255.255.255.255 -i ~/.ssh/xxx.pem
+    host $ knife solo cook --node-name ec2_ci xxx@255.255.255.255 -i ~/.ssh/xxx.pem
+
+### DB の作成
+
+    vagrant $ mysql -uxxx -pxxx -h xxx
+    mysql> CREATE DATABASE blog default character set utf8;
+    mysql> CREATE DATABASE test_blog default character set utf8;
+
+### Jenkins の設定
+
+    host $ cd blogapp
+    host $ scp -i ~/.ssh/study.pem ./jenkins-config.xml ubuntu@54.65.148.128:~/
+
+    host $ ssh -i ~/.ssh/study.pem ubuntu@54.65.148.128
+    ec2 $ sudo /usr/bin/java -jar /var/lib/jenkins/jenkins-cli.jar -s http://localhost:8080 create-job blogapp < ./jenkins-config.xml
+
+Jnkins サイトにて、プロジェクト「blogapp」を選択して、左メニュー「設定」、
+シェルの実行欄の１行目にDB接続の環境変数を設定する。
+
+    export MYSQL_DB_HOST=ci-rds.cm6rgwyxhp9c.ap-northeast-1.rds.amazonaws.com
+
+### Nginx 接続先DBの環境変数設定
+
+    ec2 $ sudo vi /etc/nginx/sites-available/test
+    
+    20行目付近の CAKE_ENV の下にDB接続先の環境変数をセットする。
+    astcgi_param MYSQL_DB_HOST xxxx
+    
+    ec2 $ sudo service nginx restart
