@@ -8,7 +8,7 @@
 #
 
 # 配列で列挙しているパッケージをインストールする。
-%w{curl mysql-client-5.5 php5 php5-cli php5-fpm php5-mysql php-pear php5-curl php5-xsl php5-mcrypt nginx git}.each do |p|
+%w{curl mysql-client-5.6 php5 php5-cli php5-fpm php5-mysql php-pear php5-curl php5-xsl php5-mcrypt nginx git}.each do |p|
   package p do
     action :install
   end

@@ -8,7 +8,7 @@
 #
 
 # 配列で列挙しているパッケージをインストールする。
-%w{mysql-server-5.5}.each do |p|
+%w{mysql-server-5.6}.each do |p|
   package p do
     action :install
   end
