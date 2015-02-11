@@ -42,8 +42,6 @@
 
 * Blogapp
   * http://192.168.33.10
-* Jenkins
-  * http://192.168.33.10:8080
 
 
 ## Console
