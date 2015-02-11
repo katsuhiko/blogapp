@@ -1,0 +1,23 @@
+{
+  "nginx": {
+    "docroot": {
+      "path": "/var/lib/jenkins/jobs/blogapp/workspace/app/webroot"
+    },
+    "default": {
+      "fastcgi_params": {"CAKE_ENV": "development"}
+    },
+    "test": {
+      "available": true,
+      "fastcgi_params": {"CAKE_ENV": "ci"}
+    }
+  },
+  "run_list": [
+    "recipe[apt]",
+    "recipe[phpenv::default]",
+    "recipe[phpenv::composer]",
+    "recipe[phpenv::develop]",
+    "recipe[capistrano]",
+    "recipe[jenkins::default]",
+    "recipe[jenkins::plugin]"
+  ]
+}
