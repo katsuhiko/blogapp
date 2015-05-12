@@ -28,13 +28,13 @@ class PostsControllerTest extends ControllerTestCase {
 	}
 
 	public function testIndexアクションではページングの結果がpostsにセットされること() {
-		$post = Fabricate::build('Post');
+		$Post = Fabricate::build('Post');
 		$this->controller->Paginator->expects($this->once())
-			->method('paginate')->will($this->returnValue($post->data));
+			->method('paginate')->will($this->returnValue($Post->data));
 
 		$vars = $this->testAction('/user/blog', ['method' => 'get', 'return' => 'vars']);
 
-		$this->assertEquals($post->data, $vars['posts']);
+		$this->assertEquals($Post->data, $vars['posts']);
 	}
 
 	public function testAddアクションで保存が失敗したときメッセージがセットされること() {

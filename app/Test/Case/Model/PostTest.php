@@ -24,7 +24,6 @@ class PostTest extends CakeTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->Post = ClassRegistry::init('Post');
 	}
 
 	/**
@@ -33,8 +32,6 @@ class PostTest extends CakeTestCase {
 	 * @return void
 	 */
 	public function tearDown() {
-		unset($this->Post);
-
 		parent::tearDown();
 	}
 
@@ -42,10 +39,10 @@ class PostTest extends CakeTestCase {
 	 * @dataProvider exampleValidationErrors
 	 */
 	public function testバリデーションエラー($column, $value, $message) {
-		$post = Fabricate::build('Post', [$column => $value]);
+		$Post = Fabricate::build('Post', [$column => $value]);
 
-		$this->assertFalse($post->validates());
-		$this->assertEquals([$message], $post->validationErrors[$column]);
+		$this->assertFalse($Post->validates());
+		$this->assertEquals([$message], $Post->validationErrors[$column]);
 	}
 
 	public function exampleValidationErrors() {
